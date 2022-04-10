@@ -26,15 +26,16 @@ export default StyleSheet.create({
     marginBottom: 16,
   },
   textLastestNews: {
-    fontFamily: "new york small",
+    fontFamily:
+      Platform.OS === "android" ? "NewYorkMediumBold" : "new york medium",
+    fontWeight: Platform.OS === "ios" ? "700" : undefined,
     fontSize: 18,
-    fontWeight: "700",
     color: palette.black,
   },
   textSeeAll: {
-    fontFamily: "nunito",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 12,
-    fontWeight: "600",
     color: palette.secondary,
     marginRight: 16,
   },

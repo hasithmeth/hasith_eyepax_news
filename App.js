@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { Store, persistor } from "./src/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-import UserNavigator from "./src/navigation/UserNavigator";
+import PrimaryNavigator from "./src/navigation/PrimaryNavigator";
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
       <Provider store={Store}>
         <PersistGate persistor={persistor}>
           <NavigationContainer>
-            <UserNavigator />
+            <PrimaryNavigator />
           </NavigationContainer>
         </PersistGate>
       </Provider>
