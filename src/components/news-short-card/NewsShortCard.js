@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   canvas: {
     flex: 1,
     justifyContent: "space-between",
-    paddingVertical: 8,
+    paddingVertical: 10,
   },
   textAuthor: {
     fontFamily: "nunito",
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 14,
     color: palette.white,
-    margintop: 8,
     marginHorizontal: 16,
   },
   textDate: {

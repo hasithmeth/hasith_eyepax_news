@@ -23,6 +23,7 @@ export default function NewsShortList({ newsItems }) {
       }}
       renderItem={renderItem}
       contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
     />
   );
 }

@@ -6,4 +6,5 @@ export default palette = {
   borderColor: "#F0F1FA",
   placeholderText: "#818181",
   black: "#000",
+  textColor: "#202663",
 };

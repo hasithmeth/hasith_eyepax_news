@@ -11,7 +11,7 @@ import TopicTag from "../../components/topic-tag/TopicTag";
 import { useSelector } from "react-redux";
 import NewsShortList from "../../components/news-short-list/NewsShortList";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const postInfo = {
     author: "Ryan Browne",
     title:
@@ -24,6 +24,7 @@ export default function Home() {
   const data = [postInfo, postInfo, postInfo];
 
   const { topics } = useSelector((state) => state.topicReducer);
+  const { searchTerm } = useSelector((state) => state.searchReducer);
 
   const [notificationsOn, setNotificationsOn] = useState(true);
 
@@ -40,7 +41,7 @@ export default function Home() {
   const deviceWidth = Dimensions.get("window").width;
 
   const handleSearchOnPress = () => {
-    console.log("search pressed");
+    navigation.navigate("SEARCH");
   };
 
   const handleBellIconPress = () => {
@@ -55,7 +56,7 @@ export default function Home() {
   return (
     <View style={HomeStyles.container}>
       <View style={HomeStyles.searchLine}>
-        <SearchBar onPress={handleSearchOnPress} />
+        <SearchBar value={searchTerm} onPress={handleSearchOnPress} />
         <HotBell
           notificationOn={notificationsOn}
           onPress={handleBellIconPress}
