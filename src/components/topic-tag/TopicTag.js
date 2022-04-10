@@ -75,15 +75,15 @@ const styles = StyleSheet.create({
     backgroundColor: palette.primary,
   },
   textItem: {
-    fontFamily: "nunito",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 12,
-    fontWeight: "600",
     color: palette.black,
   },
   textSelectedItem: {
-    fontFamily: "nunito",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 12,
-    fontWeight: "600",
     color: palette.white,
   },
   separator: {

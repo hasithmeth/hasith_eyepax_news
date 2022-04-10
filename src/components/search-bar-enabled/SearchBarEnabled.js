@@ -3,7 +3,7 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  Dimensions,
+  Platform,
 } from "react-native";
 import React from "react";
 import palette from "../../config/palette";
@@ -17,7 +17,7 @@ export default function SearchBarEnabled({
   onClearPress,
 }) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
+    <TouchableOpacity disabled onPress={onPress} style={styles.container}>
       <View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    fontFamily: "nunito",
-    fontWeight: "600",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 12,
     paddingVertical: 8,
     paddingHorizontal: 16,
     color: palette.textColor,
+    width: "90%",
   },
   inputContainer: {
     borderWidth: 1,

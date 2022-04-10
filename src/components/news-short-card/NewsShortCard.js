@@ -4,6 +4,7 @@ import {
   View,
   ImageBackground,
   Dimensions,
+  Platform,
 } from "react-native";
 import React from "react";
 import palette from "../../config/palette";
@@ -57,22 +58,23 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   textAuthor: {
-    fontFamily: "nunito",
-    fontWeight: "600",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 12,
     color: palette.white,
     marginHorizontal: 16,
   },
   textTitle: {
-    fontFamily: "new york small",
-    fontWeight: "600",
+    fontFamily:
+      Platform.OS === "android" ? "NewYorkSmallSemibold" : "new york small",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 14,
     color: palette.white,
     marginHorizontal: 16,
   },
   textDate: {
-    fontFamily: "nunito",
-    fontWeight: "600",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "600" : undefined,
     fontSize: 12,
     color: palette.white,
     marginRight: 16,

@@ -25,14 +25,17 @@ export default StyleSheet.create({
     marginBottom: 16,
   },
   textSearchTerm: {
-    fontFamily: "nunito",
-    fontWeight: "700",
+    fontFamily:
+      Platform.OS === "android" ? "NewYorkMediumBold" : "new york medium",
+    fontWeight: Platform.OS === "ios" ? "700" : undefined,
     fontSize: 14,
-    fontStyle: "italic",
+    fontStyle: Platform.OS === "ios" ? "italic" : undefined,
+    color: palette.textColor,
   },
   textStatusLabel: {
-    fontFamily: "nunito",
-    fontWeight: "400",
+    fontFamily: Platform.OS === "ios" ? "nunito" : "Nunito-SemiBold",
+    fontWeight: Platform.OS === "ios" ? "400" : undefined,
     fontSize: 14,
+    color: palette.textColor,
   },
 });
