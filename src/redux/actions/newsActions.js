@@ -41,6 +41,12 @@ const loadHeadlines = () => async (dispatch, getState) => {
     if (response.ok) {
       const data = await response.json();
       dispatch(setHeadlines({ headlinesArray: data.articles }));
+    } else {
+      Toast.show({
+        text1: "Error",
+        text2: "Too many requests, wait a moment and try again",
+        type: "error",
+      });
     }
   } catch (error) {
     Toast.show({
@@ -69,6 +75,12 @@ const loadEverything = () => async (dispatch, getState) => {
     if (response.ok) {
       const data = await response.json();
       dispatch(setNewsFeed({ articlesArray: [...feed, ...data.articles] }));
+    } else {
+      Toast.show({
+        text1: "Error",
+        text2: "Too many requests, wait a moment and try again",
+        type: "error",
+      });
     }
   } catch (error) {
     Toast.show({
