@@ -7,17 +7,23 @@ import SearchBar from "../../components/search-bar/SearchBar";
 import HotBell from "../../components/hot-bell/HotBell";
 import NextArrow from "../../assets/rnSVG/NextArrow";
 import { SafeAreaView } from "react-native-safe-area-context";
+import TopicTag from "../../components/topic-tag/TopicTag";
+import { useSelector } from "react-redux";
+import NewsShortList from "../../components/news-short-list/NewsShortList";
 
 export default function Home() {
   const postInfo = {
-    author: "by Ryan Browne",
+    author: "Ryan Browne",
     title:
       "Crypto investors should be \nprepared to lose all their money, \nBOE governor says",
     summary:
       "“I’m going to say this very bluntly again,” he added. “Buy them only if you’re prepared to lose all your money.”",
+    date: "Sunday 9, May 2021",
   };
 
   const data = [postInfo, postInfo, postInfo];
+
+  const { topics } = useSelector((state) => state.topicReducer);
 
   const [notificationsOn, setNotificationsOn] = useState(true);
 
@@ -47,7 +53,7 @@ export default function Home() {
   };
 
   return (
-    <SafeAreaView style={HomeStyles.container}>
+    <View style={HomeStyles.container}>
       <View style={HomeStyles.searchLine}>
         <SearchBar onPress={handleSearchOnPress} />
         <HotBell
@@ -73,6 +79,10 @@ export default function Home() {
           itemWidth={deviceWidth - 20}
         />
       </View>
-    </SafeAreaView>
+      <View style={HomeStyles.topics}>
+        <TopicTag topics={topics} />
+      </View>
+      <NewsShortList newsItems={data} />
+    </View>
   );
 }

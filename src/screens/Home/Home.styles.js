@@ -1,14 +1,16 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 import palette from "../../config/palette";
 
 export default StyleSheet.create({
   container: {
+    paddingTop: Platform.OS === "android" ? "8%" : "10%",
     flex: 1,
     alignItems: "center",
     backgroundColor: palette.white,
   },
   carousel: {
     height: 240,
+    marginBottom: 24,
   },
   searchLine: {
     flexDirection: "row",
@@ -39,5 +41,9 @@ export default StyleSheet.create({
   seeAllLine: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  topics: {
+    width: Dimensions.get("window").width - 20,
+    marginBottom: 16,
   },
 });

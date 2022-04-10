@@ -10,7 +10,7 @@ import palette from "../../config/palette";
 import LinearGradient from "react-native-linear-gradient";
 import placeholder from "../../assets/webp/placeholder.webp";
 
-export default function NewsCard({ author, title, summary }) {
+export default function NewsShortCard({ author, title, date }) {
   const gradientMap = ["rgba(98, 98, 98, 0.35)", "#000000"];
 
   return (
@@ -27,10 +27,10 @@ export default function NewsCard({ author, title, summary }) {
           start={{ x: 0.5, y: 0.6 }}
           end={{ x: 0.5, y: 1 }}
         >
-          <Text style={styles.textAuthor}>{`by ${author}`}</Text>
           <Text style={styles.textTitle}>{title}</Text>
           <View style={styles.bottomContainer}>
-            <Text style={styles.textPreview}>{summary}</Text>
+            <Text style={styles.textAuthor}>{author}</Text>
+            <Text style={styles.textDate}>{date}</Text>
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width - 20,
   },
   container: {
-    height: "100%",
+    height: 128,
     borderRadius: 8,
     overflow: "hidden",
     width: "100%",
@@ -53,31 +53,34 @@ const styles = StyleSheet.create({
   },
   canvas: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-between",
+    paddingVertical: 8,
   },
   textAuthor: {
     fontFamily: "nunito",
-    fontWeight: "800",
-    fontSize: 10,
+    fontWeight: "600",
+    fontSize: 12,
     color: palette.white,
     marginHorizontal: 16,
   },
   textTitle: {
     fontFamily: "new york small",
-    fontWeight: "700",
-    fontSize: 16,
+    fontWeight: "600",
+    fontSize: 14,
     color: palette.white,
+    margintop: 8,
     marginHorizontal: 16,
   },
-  textPreview: {
+  textDate: {
     fontFamily: "nunito",
-    fontWeight: "400",
-    fontSize: 10,
+    fontWeight: "600",
+    fontSize: 12,
     color: palette.white,
+    marginRight: 16,
   },
   bottomContainer: {
-    position: "absolute",
-    bottom: 16,
-    marginHorizontal: 16,
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
   },
 });
