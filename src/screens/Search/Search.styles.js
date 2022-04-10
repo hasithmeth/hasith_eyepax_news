@@ -22,6 +22,7 @@ export default StyleSheet.create({
   statusLine: {
     width: Dimensions.get("window").width - 20,
     flexDirection: "row",
+    marginBottom: 16,
   },
   textSearchTerm: {
     fontFamily: "nunito",

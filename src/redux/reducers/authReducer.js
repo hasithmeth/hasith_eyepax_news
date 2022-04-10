@@ -1,7 +1,8 @@
-import { SET_USER_NAME } from "../actions/authActions";
+import { SET_USER_NAME, SET_COUNTRY } from "../actions/authActions";
 
 const initialState = {
   userName: "",
+  country: "us",
 };
 
 export default function authReducer(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         userName: action.payload,
+      };
+    case SET_COUNTRY:
+      return {
+        ...state,
+        country: action.payload,
       };
     default:
       return state;

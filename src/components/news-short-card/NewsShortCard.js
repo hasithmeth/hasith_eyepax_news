@@ -10,13 +10,13 @@ import palette from "../../config/palette";
 import LinearGradient from "react-native-linear-gradient";
 import placeholder from "../../assets/webp/placeholder.webp";
 
-export default function NewsShortCard({ author, title, date }) {
+export default function NewsShortCard({ author, title, date, imageURL }) {
   const gradientMap = ["rgba(98, 98, 98, 0.35)", "#000000"];
 
   return (
     <View style={styles.primaryContainer}>
       <ImageBackground
-        source={placeholder}
+        source={imageURL ? { uri: imageURL } : placeholder}
         style={styles.container}
         resizeMode={"cover"}
         imageStyle={styles.image}

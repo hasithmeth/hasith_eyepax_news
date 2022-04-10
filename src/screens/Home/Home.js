@@ -1,5 +1,5 @@
 import { View, Dimensions, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewsCard from "../../components/news-card/NewsCard";
 import HomeStyles from "./Home.styles";
 import Carousel from "react-native-snap-carousel";
@@ -8,32 +8,38 @@ import HotBell from "../../components/hot-bell/HotBell";
 import NextArrow from "../../assets/rnSVG/NextArrow";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopicTag from "../../components/topic-tag/TopicTag";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NewsShortList from "../../components/news-short-list/NewsShortList";
+import { loadEverything, loadHeadlines } from "../../redux/actions/newsActions";
+import { setCountry } from "../../redux/actions/authActions";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Home({ navigation }) {
-  const postInfo = {
-    author: "Ryan Browne",
-    title:
-      "Crypto investors should be \nprepared to lose all their money, \nBOE governor says",
-    summary:
-      "“I’m going to say this very bluntly again,” he added. “Buy them only if you’re prepared to lose all your money.”",
-    date: "Sunday 9, May 2021",
-  };
-
-  const data = [postInfo, postInfo, postInfo];
+  const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
   const { topics } = useSelector((state) => state.topicReducer);
   const { searchTerm } = useSelector((state) => state.searchReducer);
+  const { headlines, feed } = useSelector((state) => state.newsReducer);
 
   const [notificationsOn, setNotificationsOn] = useState(true);
+
+  useEffect(() => {
+    dispatch(loadHeadlines());
+    dispatch(loadEverything());
+  }, []);
+
+  useEffect(() => {
+    if (isFocused) dispatch(loadHeadlines());
+  }, [isFocused]);
 
   const carouselRenderItem = ({ item, index }) => {
     return (
       <NewsCard
         author={item.author}
         title={item.title}
-        summary={item.summary}
+        summary={item.description}
+        imageURL={item.urlToImage}
       />
     );
   };
@@ -45,12 +51,12 @@ export default function Home({ navigation }) {
   };
 
   const handleBellIconPress = () => {
-    console.log("bell pressed");
     setNotificationsOn(!notificationsOn);
   };
 
   const handleSeeAllPress = () => {
-    console.log("see all pressed");
+    dispatch(setCountry({ countryCode: "us" }));
+    dispatch(loadHeadlines());
   };
 
   return (
@@ -73,7 +79,7 @@ export default function Home({ navigation }) {
       </View>
       <View style={HomeStyles.carousel}>
         <Carousel
-          data={data}
+          data={headlines}
           renderItem={carouselRenderItem}
           layout={"stack"}
           sliderWidth={deviceWidth}
@@ -83,7 +89,7 @@ export default function Home({ navigation }) {
       <View style={HomeStyles.topics}>
         <TopicTag topics={topics} />
       </View>
-      <NewsShortList newsItems={data} />
+      <NewsShortList newsItems={feed} />
     </View>
   );
 }

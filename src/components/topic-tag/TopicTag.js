@@ -8,6 +8,7 @@ import {
 import React from "react";
 import palette from "../../config/palette";
 import { useDispatch } from "react-redux";
+import { loadEverything, setNewsFeed } from "../../redux/actions/newsActions";
 import { setSelectedTopic } from "../../redux/actions/topicActions";
 
 export default function TopicTag({ topics }) {
@@ -17,7 +18,9 @@ export default function TopicTag({ topics }) {
     return (
       <TouchableOpacity
         onPress={() => {
+          dispatch(setNewsFeed({ articlesArray: [] }));
           dispatch(setSelectedTopic({ topicID: item.id }));
+          dispatch(loadEverything());
         }}
       >
         <View

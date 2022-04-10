@@ -5,17 +5,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import authReducer from "./reducers/authReducer";
 import topicReducer from "./reducers/topicReducer";
 import searchReducer from "./reducers/searchReducer";
+import newsReducer from "./reducers/newsReducer";
 
 const rootReducer = combineReducers({
   authReducer,
   topicReducer,
   searchReducer,
+  newsReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  blacklist: [],
+  blacklist: [newsReducer],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

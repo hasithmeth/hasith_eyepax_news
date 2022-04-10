@@ -10,13 +10,13 @@ import palette from "../../config/palette";
 import LinearGradient from "react-native-linear-gradient";
 import placeholder from "../../assets/webp/placeholder.webp";
 
-export default function NewsCard({ author, title, summary }) {
+export default function NewsCard({ author, title, summary, imageURL }) {
   const gradientMap = ["rgba(98, 98, 98, 0.35)", "#000000"];
 
   return (
     <View style={styles.primaryContainer}>
       <ImageBackground
-        source={placeholder}
+        source={imageURL ? { uri: imageURL } : placeholder}
         style={styles.container}
         resizeMode={"cover"}
         imageStyle={styles.image}
@@ -27,7 +27,7 @@ export default function NewsCard({ author, title, summary }) {
           start={{ x: 0.5, y: 0.6 }}
           end={{ x: 0.5, y: 1 }}
         >
-          <Text style={styles.textAuthor}>{`by ${author}`}</Text>
+          {author && <Text style={styles.textAuthor}>{`by ${author}`}</Text>}
           <Text style={styles.textTitle}>{title}</Text>
           <View style={styles.bottomContainer}>
             <Text style={styles.textPreview}>{summary}</Text>
